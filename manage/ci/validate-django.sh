@@ -7,7 +7,7 @@ fi
 
 set -eu # Exit on error and undefined var is error
 
-MANAGE="python manage.py"
+MANAGE="python src/manage.py"
 
 [[ ! -e log ]] && mkdir -p log
 

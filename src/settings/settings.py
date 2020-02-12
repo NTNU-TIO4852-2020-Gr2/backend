@@ -1,9 +1,9 @@
 import os
 import sys
 
-# Directory that contains this file.
+# Settings directory
 SETTINGS_DIR = os.path.dirname(os.path.abspath(__file__))
-# Root directory. Contains manage.py
+# Root directory
 BASE_DIR = os.path.normpath(os.path.join(SETTINGS_DIR, '..', '..'))
 # Settings package
 SETTINGS_PACKAGE = 'settings'

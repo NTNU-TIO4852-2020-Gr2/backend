@@ -26,7 +26,7 @@ COPY setup/local.template.py src/settings/local.py
 
 # Compile translations
 # I18N DISBALED
-#RUN python manage.py compilemessages --locale=nb
+#RUN python src/manage.py compilemessages --locale=nb
 
 # Remove temporary config file
 RUN rm -f src/settings/local.py

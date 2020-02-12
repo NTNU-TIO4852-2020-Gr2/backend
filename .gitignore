@@ -134,6 +134,7 @@ dmypy.json
 # App
 /.local/
 /VERSION
+/static/
 
 # Editors
 .vscode/

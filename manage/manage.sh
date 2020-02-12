@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MANAGE="python manage.py"
+MANAGE="python src/manage.py"
 CONFIG_FILE="src/settings/local.py"
 LOCAL_DIR=".local/venv"
 LOG_DIR="$LOCAL_DIR/log"

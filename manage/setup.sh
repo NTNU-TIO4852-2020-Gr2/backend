@@ -2,7 +2,7 @@
 
 LOCAL_DIR=".local/venv"
 CONFIG_FILE="src/settings/local.py"
-CONFIG_TEMPLATE_FILE="setup/local.venv.dev.py"
+CONFIG_TEMPLATE_FILE="setup/local.dev.venv.py"
 MANAGE="manage/manage.sh"
 
 set -eu
@@ -38,8 +38,7 @@ $MANAGE compilemessages --locale=nb
 echo
 echo "Adding superuser ..."
     $MANAGE shell << END
-# Python 2
-# TODO Migrate to Python 3
+# Python 3
 from django.contrib.auth import get_user_model;
 
 superuser_username = "batman"
@@ -51,7 +50,7 @@ User = get_user_model();
 if not User.objects.filter(username=superuser_username).exists():
     User.objects.create_superuser(username=superuser_username, email=superuser_email, password=superuser_password, is_active=superuser_active)
 else:
-    print "Superuser already exists."
+    print("Superuser already exists.")
 
 quit()
 END

@@ -6,8 +6,20 @@
 
 * [Git](https://git-scm.com) or [GitHub for Windows](https://windows.github.com/)
 * Python 3 w/ pip and friends (see section below)
+* GNU gettext
 * Docker and Docker Compose (optional)
 * Travis Tool (optional)
+
+### Configuring Git
+
+If using CLI (not some GUI app):
+```
+git config --global core.autocrlf false
+git config --global user.name <username>
+git config --global user.email <email-address>
+```
+
+Alternatively, on Windows, use the GitHub for Windows app to setup everything
 
 ### Installing Python 2 Virtualenv
 
@@ -22,16 +34,11 @@ sudo pip3 install --upgrade pip virtualenv setuptools wheel
 py -3 -m pip install --upgrade pip virtualenv setuptools wheel
 ```
 
-### Configuring Git
+### Installing GNU gettext
 
-If using CLI (not some GUI app):
-```
-git config --global core.autocrlf false
-git config --global user.name <username>
-git config --global user.email <email-address>
-```
+Linux: `apt install gettext`
 
-Alternatively, on Windows, use the GitHub for Windows app to setup everything
+Windows: TODO
 
 ### (Optional) Installing and Configuring Docker
 

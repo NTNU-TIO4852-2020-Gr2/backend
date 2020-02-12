@@ -1,7 +1,16 @@
 import os
+import sys
 
+# TODO remove
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Directory that contains this file.
+SETTINGS_DIR = os.path.dirname(os.path.abspath(__file__))
+# Root directory. Contains manage.py
+BASE_DIR = os.path.normpath(os.path.join(SETTINGS_DIR, '..', '..'))
+# Settings package
+SETTINGS_PACKAGE = 'settings'
 
 SECRET_KEY = ''
 DEBUG = False
@@ -75,3 +84,29 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+# Read version from file
+VERSION = 'Unknown version'
+version_file_path = os.path.join(BASE_DIR, 'VERSION')
+if os.path.isfile(version_file_path):
+    with open(version_file_path, 'r') as version_file:
+        content = version_file.read()
+    content = content.strip()
+    if (content):
+        VERSION = content
+
+# Load local settings
+# Remember to keep 'local' last, so it can override any setting.
+for settings_module in ['local']:
+    full_settings_module = '{0}.{1}'.format(SETTINGS_PACKAGE, settings_module)
+    sys.stdout.write(u'Loading settings from "{0}".\n'.format(full_settings_module))
+    if not os.path.exists(os.path.join(SETTINGS_DIR, settings_module + '.py')):
+        sys.stderr.write(u'Could not find settings module "{0}".\n'.format(settings_module))
+        if settings_module == 'local':
+            sys.stderr.write('You need to add the settings file "src/settings/local.py".\n')
+        sys.exit(1)
+    try:
+        exec(u'from {0} import *'.format(full_settings_module))  # noqa: S102
+    except ImportError as e:
+        print(u'Could not import settings for "{0}": {1}'.format(full_settings_module, str(e)))  # noqa: T001
+        sys.exit(1)

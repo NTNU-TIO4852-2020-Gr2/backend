@@ -14,6 +14,8 @@ __pycache__
 /log/
 /static/
 /db.sqlite3
+/.local/
+/VERSION
 
 # Deployment
 /keys/*.key

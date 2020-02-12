@@ -54,8 +54,7 @@ if [[ ! -z $SUPERUSER_USERNAME ]]; then
         SUPERUSER_ACTIVE="True"
     fi
     $MANAGE shell << END
-# Python 2
-# TODO Migrate to Python 3 and Django 3
+# Python 3
 from django.contrib.auth import get_user_model;
 
 superuser_usernane = "${SUPERUSER_USERNAME}"
@@ -64,16 +63,16 @@ superuser_password = "${SUPERUSER_PASSWORD}"
 superuser_active = ${SUPERUSER_ACTIVE}
 
 if not superuser_usernane:
-    print "Error: Username not specified"
+    print("Error: Username not specified")
     quit()
 
 User = get_user_model();
 if User.objects.filter(username=superuser_usernane).exists():
-    print "User with specified username already exists. Not adding superuser."
+    print("User with specified username already exists. Not adding superuser.")
 elif not superuser_email or not superuser_password:
-    print "User with specified username does not exist, but all credentials were not specified. Not adding superuser."
+    print("User with specified username does not exist, but all credentials were not specified. Not adding superuser.")
 else:
-    print "User with specified username does not exist and all credentials were provided. Adding superuser with is_active=%s." % superuser_active
+    print("User with specified username does not exist and all credentials were provided. Adding superuser with is_active={0}.".format(superuser_active))
     User.objects.create_superuser(username=superuser_usernane, email=superuser_email, password=superuser_password, is_active=superuser_active)
 
 quit()

@@ -1,3 +1,10 @@
+import os
+
+# Settings directory
+SETTINGS_DIR = os.path.dirname(os.path.abspath(__file__))
+# Root directory
+BASE_DIR = os.path.normpath(os.path.join(SETTINGS_DIR, '..', '..'))
+
 # Set to a randomly generated key in production
 SECRET_KEY = ''
 
@@ -10,12 +17,12 @@ ALLOWED_HOSTS = [
 ]
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 # Localization
 LANGUAGE_CODE = 'en-us'

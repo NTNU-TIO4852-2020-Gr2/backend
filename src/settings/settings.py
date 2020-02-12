@@ -23,7 +23,7 @@ INSTALLED_APPS = [
 
     # App
     'api.apps.ApiConfig',
-    'web.apps.WebConfig'
+    'web.apps.WebConfig',
 ]
 
 MIDDLEWARE = [
@@ -112,26 +112,32 @@ LOGGING = {
     },
 }
 
+# Static files
 # Absolute path to the directory static files should be collected to.
 STATIC_ROOT = 'static/'
-
 # URL prefix for static files.
 STATIC_URL = '/static/'
-
 # URL prefix for admin static files.
 ADMIN_MEDIA_PREFIX = '/static/admin/'
-
 # Additional locations of static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'res'),
 ]
-
 # List of finder classes that know how to find static files in various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+# Security
+CSRF_COOKIE_PATH = '/'
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
 
 # Read version from file
 VERSION = '0'

@@ -1,10 +1,6 @@
 import os
 import sys
 
-# TODO remove
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # Directory that contains this file.
 SETTINGS_DIR = os.path.dirname(os.path.abspath(__file__))
 # Root directory. Contains manage.py

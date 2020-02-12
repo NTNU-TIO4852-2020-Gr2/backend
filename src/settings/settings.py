@@ -97,7 +97,7 @@ LOGGING = {
         'error_file': {
             'level': 'WARNING',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'log/error.log',
+            'filename': os.path.join(BASE_DIR, 'log/error.log'),
             'maxBytes': 10 * 1024 * 1024,  # 10 MB
             'backupCount': 5,
             'formatter': 'standard',

@@ -28,7 +28,7 @@ cp requirements/all.txt requirements/all.old.txt
 echo "Updating requirements files ..."
 pip-compile --quiet --upgrade requirements/development.in
 pip-compile --quiet --upgrade requirements/production.in
-pip-compile --quiet --upgrade requirements/test.in
+pip-compile --quiet --upgrade requirements/testing.in
 pip-compile --quiet --upgrade requirements/all.in
 
 # Create requirements.txt for dependency analyzers etc.

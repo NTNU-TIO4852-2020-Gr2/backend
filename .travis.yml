@@ -29,16 +29,16 @@ jobs:
   # Stage: Testing
   - stage: test
     name: Validate Django project
-    install: pip install --upgrade -r requirements/test.txt
+    install: pip install --upgrade -r requirements/testing.txt
     script: manage/ci/validate-django.sh
   - stage: test
     name: Test
-    install: pip install --upgrade -r requirements/test.txt
+    install: pip install --upgrade -r requirements/testing.txt
     script: manage/ci/test.sh
   # LINTING DISABLED
   #- stage: test
   #  name: Lint
-  #  install: pip install --upgrade -r requirements/test.txt
+  #  install: pip install --upgrade -r requirements/testing.txt
   #  script: flake8
   - stage: test
     name: Validate Docker image

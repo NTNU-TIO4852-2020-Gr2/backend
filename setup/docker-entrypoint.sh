@@ -37,7 +37,7 @@ $MANAGE collectstatic --noinput --clear
 
 # Run migration, but skip initial if matching table names already exist
 echo "Migrating database ..."
-$MANAGE migrate --fake-initial
+$MANAGE migrate
 echo
 
 # Clear expired sessions

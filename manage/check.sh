@@ -14,7 +14,7 @@ echo "Running some checks. This will stop on the first error, or print \"success
 echo
 echo "Checking migrations ..."
 $MANAGE makemigrations --check --no-input --dry-run
-$MANAGE migrate --fake-initial --no-input --fake
+$MANAGE migrate --no-input --fake
 
 # I18N DISBALED
 #echo

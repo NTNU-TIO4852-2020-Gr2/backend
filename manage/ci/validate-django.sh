@@ -22,7 +22,7 @@ echo "Collecting static files ..."
 $MANAGE collectstatic --no-input --clear
 
 # Apply migrations, but skip initial if matching table names already exist
-$MANAGE migrate --fake-initial --no-input
+$MANAGE migrate --no-input
 
 # Check if new migrations can be made
 $MANAGE makemigrations --dry-run --check --no-input

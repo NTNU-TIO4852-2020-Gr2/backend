@@ -115,7 +115,7 @@ STATICFILES_FINDERS = (
 )
 
 # Read version from file
-VERSION = 'Unknown version'
+VERSION = '0'
 version_file_path = os.path.join(BASE_DIR, 'VERSION')
 if os.path.isfile(version_file_path):
     with open(version_file_path, 'r') as version_file:

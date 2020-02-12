@@ -31,9 +31,10 @@ echo
 echo "Running migration ..."
 $MANAGE migrate --fake-initial
 
-echo
-echo "Compiling translations ..."
-$MANAGE compilemessages --locale=nb
+# I18N DISBALED
+#echo
+#echo "Compiling translations ..."
+#$MANAGE compilemessages --locale=nb
 
 echo
 echo "Adding superuser ..."

@@ -12,13 +12,13 @@ set -eu
 mkdir -p $LOCAL_DIR
 
 # Add config file and exit if missing
-if [[ ! -e $CONFIG_FILE ]]; then
+if [[ ! -f $CONFIG_FILE ]]; then
     echo "Creating new config file ..."
     cp $CONFIG_TEMPLATE_FILE $CONFIG_FILE
 fi
 
 # Create DB file so Docker doesn't make it a directory
-if [[ ! -e $DB_FILE ]]; then
+if [[ ! -f $DB_FILE ]]; then
     echo "Creating DB file ..."
     touch $DB_FILE
 fi

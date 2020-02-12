@@ -16,9 +16,10 @@ echo "Checking migrations ..."
 $MANAGE makemigrations --check --no-input --dry-run
 $MANAGE migrate --fake-initial --no-input --fake
 
-echo
-echo "Compiling translations ..."
-$MANAGE compilemessages --locale=nb
+# I18N DISBALED
+#echo
+#echo "Compiling translations ..."
+#$MANAGE compilemessages --locale=nb
 
 echo
 echo "Checking validity ..."

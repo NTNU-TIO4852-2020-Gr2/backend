@@ -20,4 +20,10 @@ if [[ ! -f $DB_FILE ]]; then
     exit -1
 fi
 
-$DC up --no-recreate
+# Check if no command was specified
+if [[ -z $@ ]]; then
+    echo "No command was specified." 1>&2
+    exit -1
+fi
+
+$DC run app $@

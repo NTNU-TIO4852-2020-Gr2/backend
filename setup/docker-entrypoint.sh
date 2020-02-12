@@ -5,7 +5,7 @@ set -u # Treat undefined variables as errors
 
 # Constants
 APP_NAME="eit"
-MANAGE="python manage.py"
+MANAGE="python src/manage.py"
 APP_USER="app"
 APP_GROUP="app"
 
@@ -87,7 +87,7 @@ $MANAGE check --deploy --fail-level=ERROR
 echo
 
 # Add group and user to run the app
-if ! grep -q "^${APP_APP_GROUP}:" /etc/group; then
+if ! grep -q "^${APP_GROUP}:" /etc/group; then
     if [[ ! -z $APP_GID ]]; then
         groupadd -r -g $APP_GID $APP_GROUP
     else
@@ -116,5 +116,6 @@ if [[ $NO_START == "true" ]]; then
     exit 0
 fi
 
+echo
 echo "Starting uWSGI server ..."
 exec uwsgi --ini uwsgi.ini

@@ -27,5 +27,6 @@ $MANAGE migrate --fake-initial --no-input
 # Check if new migrations can be made
 $MANAGE makemigrations --dry-run --check --no-input
 
+# I18N DISBALED
 # Compiling translations
-$MANAGE compilemessages --locale=nb
+#$MANAGE compilemessages --locale=nb

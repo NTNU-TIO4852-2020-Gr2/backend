@@ -12,11 +12,8 @@ services:
     - SUPERUSER_INACTIVE=false
     volumes:
     - ../src/settings/local.docker.py:/app/src/settings/local.py:ro
+    - ../setup/uwsgi.dev.ini:/app/uwsgi.ini:ro
     - ../.local/docker/db.sqlite3:/app/db.sqlite3:rw
     - ../.local/docker/log:/app/log:rw
-    # Source dirs, in case of changes
-    - ../locale/:/app/locale/:ro
-    - ../src/:/app/src/:ro
-    - ../templates/:/app/templates/:ro
     ports:
     - "8000:8080"

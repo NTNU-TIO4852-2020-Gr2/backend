@@ -34,8 +34,9 @@ fi
 # Collect static files
 echo "Collecting static files ..."
 $MANAGE collectstatic --noinput --clear
+echo
 
-# Run migration, but skip initial if matching table names already exist
+# Run migration
 echo "Migrating database ..."
 $MANAGE migrate
 echo
@@ -104,7 +105,6 @@ if ! grep -q "^${APP_USER}:" /etc/passwd; then
 fi
 
 # Setup permissions and stuff
-# Note: Volumes from vboxsf cannot be chowned
 set +e
 echo "Chowning all files ..."
 chown -R $APP_USER:$APP_GROUP .

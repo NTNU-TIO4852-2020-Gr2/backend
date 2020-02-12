@@ -1,0 +1,19 @@
+version: '3.6'
+
+services:
+  app:
+    container_name: eit-app
+    build:
+      context: ..
+    environment:
+    - SUPERUSER_USERNAME=batman
+    - SUPERUSER_EMAIL=batman@localhost
+    - SUPERUSER_PASSWORD=manbat
+    - SUPERUSER_INACTIVE=false
+    volumes:
+    - ../src/settings/local.docker.py:/app/src/settings/local.py:ro
+    - ../setup/uwsgi.dev.ini:/app/uwsgi.ini:ro
+    - ../.local/docker/db.sqlite3:/app/db.sqlite3:rw
+    - ../.local/docker/log:/app/log:rw
+    ports:
+    - "8000:8080"

@@ -1,0 +1,24 @@
+.cache
+.tox
+.tx
+__pycache__
+*.pyc
+/node_modules/
+/venv/
+/.venv/
+/tmp/
+.git/
+/.github/
+
+# App
+/log/
+/static/
+/db.sqlite3
+/.local/
+
+# Deployment
+/keys/*.key
+
+# Editors
+.vscode/
+.idea/

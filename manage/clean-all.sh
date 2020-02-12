@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Remove local run data, virtualenv, Python caches, etc.
+
+echo "Cleaning virtualenv ..."
+rm -rf .venv
+
+echo "Cleaning Python cache ..."
+find . -name "*.pyc" -exec rm -rf {} \;
+
+echo "Cleaning misc. files ..."
+rm -f requirements/*.old.txt
+
+echo "Cleaning local data ..."
+rm -rf .local
+rm -rf VERSION
+
+echo "Cleaning config ..."
+rm -f src/settings/local.py
+rm -f src/settings/local.docker.py
+
+echo "Cleaning Docker ..."
+docker-compose -f setup/docker-compose.dev.yml down
+docker-compose -f setup/docker-compose.ci.yml down

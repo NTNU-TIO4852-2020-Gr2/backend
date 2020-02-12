@@ -1,0 +1,22 @@
+# Version 3.3 because of the Travis image
+version: '3.3'
+
+services:
+  app:
+    container_name: eit-app
+    build:
+      context: ..
+    environment:
+    # Dummy UID+GID
+    - APP_UID=123
+    - APP_GID=123
+    - SUPERUSER_USERNAME=batman
+    - SUPERUSER_EMAIL=batman@localhost
+    - SUPERUSER_PASSWORD=manbat
+    - SUPERUSER_INACTIVE=false
+    # Don't start the server
+    - NO_START=true
+    volumes:
+    - ../setup/local.ci.py:/app/src/settings/local.py:ro
+    ports:
+    - "8000:8000"

@@ -1,18 +1,14 @@
-from api.models import Measurement
-from rest_framework.decorators import api_view
-from rest_framework import serializers
-from rest_framework.response import Response
+from rest_framework import viewsets
+
+from .models import Device, Measurement
+from .serializers import DeviceSerializer, MeasurementSerializer
 
 
-class MeasurementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Measurement
-        fields = '__all__'
+class DeviceViewSet(viewsets.ModelViewSet):
+    queryset = Device.objects.all()
+    serializer_class = DeviceSerializer
 
 
-@api_view(['POST'])
-def register_measurement(request):
-    serializer = MeasurementSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer.save()
-    return Response()
+class MeasurementViewSet(viewsets.ModelViewSet):
+    queryset = Measurement.objects.all()
+    serializer_class = MeasurementSerializer

@@ -8,6 +8,8 @@ BASE_DIR = os.path.normpath(os.path.join(SETTINGS_DIR, '..', '..'))
 # Settings package
 SETTINGS_PACKAGE = 'settings'
 
+APP_NAME = "EiT Backend"
+SITE_NAME = "EiT Backend"
 SECRET_KEY = ''
 DEBUG = False
 ALLOWED_HOSTS = []
@@ -20,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
     # App
     'api.apps.ApiConfig',

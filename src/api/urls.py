@@ -21,5 +21,5 @@ urlpatterns = [
     path("schema/", schema_view, name="schema"),
     path("v0/", include(router.urls)),
     # path(r"favicon.ico", RedirectView.as_view(url="/static/images/favicon.ico", permanent=True)),
-    path("", RedirectView.as_view(url="/v0", permanent=False)),
+    path("", RedirectView.as_view(url="v0/", permanent=False)),
 ]

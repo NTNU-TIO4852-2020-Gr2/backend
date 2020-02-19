@@ -6,9 +6,9 @@ from .models import Device, Measurement
 
 @register(Device)
 class DeviceAdmin(ModelAdmin):
-    list_display = ["__all__"]
+    list_display = ["uuid", "name", "latitude", "longitude"]
 
 
 @register(Measurement)
 class MeasurementAdmin(ModelAdmin):
-    list_display = ["__all__"]
+    list_display = ["id", "device", "time", "ph"]

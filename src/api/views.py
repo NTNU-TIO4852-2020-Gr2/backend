@@ -15,7 +15,7 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementSerializer
 
-    @action(detail=False, methods=["post"])
+    @action(name="NB-IoT Engineering Webhook Endpoint", detail=False, methods=["post"])
     def nbiot_engineering(self, request):
         #serializer = PasswordSerializer(data=request.data)
         #if serializer.is_valid():

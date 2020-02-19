@@ -14,8 +14,8 @@ admin.site.site_header = settings.SITE_NAME
 schema_view = get_schema_view(title=settings.APP_NAME, permission_classes=[AllowAll])
 
 router = PublicDefaultRouter()
-router.register("devices/", DeviceViewSet)
-router.register("measurements/", MeasurementViewSet)
+router.register("devices", DeviceViewSet)
+router.register("measurements", MeasurementViewSet)
 
 urlpatterns = [
     path("schema/", schema_view, name="schema"),

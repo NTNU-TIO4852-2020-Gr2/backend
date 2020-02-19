@@ -1,6 +1,14 @@
-from django.contrib import admin
+from django.contrib.admin import register
+from django.contrib.admin.options import ModelAdmin
 
 from .models import Device, Measurement
 
-admin.site.register(Device)
-admin.site.register(Measurement)
+
+@register(Device)
+class DeviceAdmin(ModelAdmin):
+    list_display = ["__all__"]
+
+
+@register(Measurement)
+class MeasurementAdmin(ModelAdmin):
+    list_display = ["__all__"]

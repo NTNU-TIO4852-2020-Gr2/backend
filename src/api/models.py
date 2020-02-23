@@ -10,7 +10,7 @@ class Device(models.Model):
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField(max_length=255, blank=True)
-    time_created = models.DateTimeField(auto_now_add=True, editable=False)
+    time_created = models.DateTimeField(auto_now_add=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
 
@@ -24,7 +24,7 @@ class Measurement(models.Model):
         ordering = ("-time",)
 
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    time = models.DateTimeField(auto_now_add=True, editable=False)
+    time = models.DateTimeField(auto_now_add=True)
     ph = models.FloatField(blank=True, null=True)
 
     def __str__(self):

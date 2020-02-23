@@ -8,6 +8,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = "__all__"
+        read_only_fields = ["uuid", "time_created"]
 
     url = serializers.HyperlinkedIdentityField(view_name="device-detail")
     measurements_count = serializers.SerializerMethodField()
@@ -21,5 +22,6 @@ class MeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Measurement
         fields = "__all__"
+        read_only_fields = ["device", "time", "ph"]
 
-    url = serializers.HyperlinkedIdentityField(view_name="device-detail")
+    url = serializers.HyperlinkedIdentityField(view_name="measurement-detail")

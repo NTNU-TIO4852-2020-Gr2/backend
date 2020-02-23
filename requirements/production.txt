@@ -10,10 +10,11 @@ chardet==3.0.4            # via requests
 django-mailgun==0.9.1
 django==3.0.3
 djangorestframework==3.11.0
-idna==2.8                 # via requests
+idna==2.9                 # via requests
 pytz==2019.3              # via django
-requests==2.22.0          # via django-mailgun
+requests==2.23.0          # via django-mailgun
 six==1.14.0               # via django-mailgun
 sqlparse==0.3.0           # via django
+uritemplate==3.0.1
 urllib3==1.25.8           # via requests
 uwsgi==2.0.18

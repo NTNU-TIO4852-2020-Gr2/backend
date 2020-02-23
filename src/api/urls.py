@@ -20,5 +20,5 @@ router.register("measurements", MeasurementViewSet)
 urlpatterns = [
     path("schema/", schema_view, name="schema"),
     path("v0/", include(router.urls)),
-    path("", RedirectView.as_view(url="v0/", permanent=False)),
+    path("", RedirectView.as_view(url="v0/", permanent=False), name="api"),
 ]

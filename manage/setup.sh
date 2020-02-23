@@ -1,9 +1,9 @@
 #!/bin/bash
 
-LOCAL_DIR=".local/venv"
+MANAGE="manage/manage.sh"
 CONFIG_FILE="src/settings/local.py"
 CONFIG_TEMPLATE_FILE="setup/local.dev.venv.py"
-MANAGE="manage/manage.sh"
+LOCAL_DIR=".local/venv"
 
 set -eu
 

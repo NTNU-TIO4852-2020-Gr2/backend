@@ -17,6 +17,14 @@ class DeviceSerializer(serializers.ModelSerializer):
         return Measurement.objects.filter(device=obj).count()
 
 
+class DeviceCreateSerializer(DeviceSerializer):
+
+    class Meta:
+        model = Device
+        fields = "__all__"
+        read_only_fields = ["time_created"]
+
+
 class MeasurementSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -25,3 +33,11 @@ class MeasurementSerializer(serializers.ModelSerializer):
         read_only_fields = ["device", "time", "ph"]
 
     url = serializers.HyperlinkedIdentityField(view_name="measurement-detail")
+
+
+class MeasurementCreateSerializer(MeasurementSerializer):
+
+    class Meta:
+        model = Measurement
+        fields = "__all__"
+        read_only_fields = ["time"]

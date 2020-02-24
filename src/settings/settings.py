@@ -24,9 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
 
-    # App
-    'api.apps.ApiConfig',
-    'web.apps.WebConfig',
+    # Local
+    'analysis.apps.Config',
+    'api.apps.Config',
+    'devices.apps.Config',
+    'home.apps.Config',
 ]
 
 MIDDLEWARE = [

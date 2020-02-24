@@ -7,7 +7,8 @@ from rest_framework.decorators import action
 from rest_framework.parsers import JSONParser, ParseError
 from rest_framework.utils import json
 
-from .models import Device, Measurement
+from devices.models import Device, Measurement
+
 from .serializers import DeviceCreateSerializer, DeviceSerializer, MeasurementCreateSerializer, MeasurementSerializer
 
 

@@ -31,8 +31,8 @@ flake8-string-format==0.3.0  # via -r requirements/testing.in (line 19)
 flake8-tidy-imports==4.0.0  # via -r requirements/testing.in (line 20)
 flake8-todo==0.7          # via -r requirements/testing.in (line 21)
 flake8==3.7.9             # via -r requirements/testing.in (line 4), flake8-bandit, flake8-builtins, flake8-commas, flake8-comprehensions, flake8-debugger, flake8-mutable, flake8-pep3101, flake8-polyfill, flake8-print, flake8-quotes, flake8-string-format, flake8-tidy-imports
-gitdb2==4.0.1             # via gitpython
-gitdb==4.0.0              # via gitdb2
+gitdb2==4.0.2             # via gitpython
+gitdb==4.0.1              # via gitdb2
 gitpython==3.0.8          # via bandit
 idna==2.9                 # via requests
 importlib-metadata==1.5.0  # via flake8-comprehensions, flake8-tidy-imports
@@ -46,7 +46,7 @@ pytz==2019.3              # via django
 pyyaml==5.3               # via -r requirements/base.in (line 4), bandit
 requests==2.23.0          # via django-mailgun
 six==1.14.0               # via bandit, django-mailgun, flake8-print, pip-tools, stevedore
-smmap==3.0.0              # via gitdb
+smmap==3.0.1              # via gitdb
 sqlparse==0.3.0           # via django
 stevedore==1.32.0         # via bandit
 uritemplate==3.0.1        # via -r requirements/base.in (line 3)

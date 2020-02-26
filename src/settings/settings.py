@@ -52,8 +52,9 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             "libraries": {
-                "extra_tags": "common.template_tags",
-                "api_extra_tags": "api.template_tags",
+                "common_tags": "common.template_tags",
+                "api_tags": "api.template_tags",
+                "dashboard_tags": "dashboard.template_tags",
             },
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -149,6 +150,12 @@ SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
+
+# Map
+GOOGLE_MAPS_API_KEY = ""
+GOOGLE_MAPS_LATITUDE = "0"
+GOOGLE_MAPS_LONGITUDE = "0"
+GOOGLE_MAPS_ZOOM = "10"
 
 # Read version from file
 VERSION = '0'

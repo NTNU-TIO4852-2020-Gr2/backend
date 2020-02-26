@@ -16,3 +16,9 @@ DATABASES = {
 
 # Change log path
 LOGGING['handlers']['error_file']['filename'] = LOCAL_FILE_ROOT + "/error.log"
+
+# Map
+GOOGLE_MAPS_API_KEY = ""
+GOOGLE_MAPS_LATITUDE = "0"
+GOOGLE_MAPS_LONGITUDE = "0"
+GOOGLE_MAPS_ZOOM = "10"

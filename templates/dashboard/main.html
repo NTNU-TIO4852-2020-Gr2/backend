@@ -1,4 +1,5 @@
 {% load common_tags %}
+{% load dashboard_tags %}
 {% load bootstrap4 %}
 
 <!doctype html>
@@ -19,7 +20,18 @@
 			{% endblock %}
 		</title>
 
-		<link href="/static/style/home.css" rel="stylesheet">
+		{% bootstrap_css %}
+		{% bootstrap_javascript jquery='full' %}
+		{% bootstrap_messages %}
+		<link href="/static/style/dashboard.css" rel="stylesheet">
+		<script>
+			let mapOptions = {
+				center: {lat: {% google_maps_latitude %}, lng: {% google_maps_longitude %}},
+				zoom: {% google_maps_zoom %},
+				mapTypeId: "{% google_maps_type %}",
+			};
+		</script>
+		<script src="/static/scripts/dashboard.js"></script>
 	</head>
 
 	<body>
@@ -46,7 +58,7 @@
 				</nav>
 				<main role="main" class="main-container col-md-9 ml-sm-auto">
 					<div class="map-container d-flex">
-						{% include "dashboard/map.html" %}
+						<div id="map"></div>
 					</div>
 					<div class="details-container d-flex hidden">
 						{% include "dashboard/details.html" %}
@@ -55,9 +67,7 @@
 			</div>
 		</div>
 
-		{# Scripts #}
-		{% bootstrap_css %}
-		{% bootstrap_javascript jquery='full' %}
-		{% bootstrap_messages %}
+		<!-- More scripts -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key={% google_maps_api_key %}&callback=initMap"></script>
 	</body>
 </html>

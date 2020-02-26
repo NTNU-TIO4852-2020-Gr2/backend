@@ -34,3 +34,11 @@ def google_maps_zoom():
     Include site name.
     """
     return settings.GOOGLE_MAPS_ZOOM
+
+
+@register.simple_tag
+def google_maps_type():
+    """
+    Include site name.
+    """
+    return settings.GOOGLE_MAPS_TYPE

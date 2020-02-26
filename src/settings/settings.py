@@ -156,6 +156,8 @@ GOOGLE_MAPS_API_KEY = ""
 GOOGLE_MAPS_LATITUDE = "0"
 GOOGLE_MAPS_LONGITUDE = "0"
 GOOGLE_MAPS_ZOOM = "10"
+# roadmap, satellite, hybrid or terrain
+GOOGLE_MAPS_TYPE = "terrain"
 
 # Read version from file
 VERSION = '0'

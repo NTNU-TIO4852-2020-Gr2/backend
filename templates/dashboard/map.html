@@ -3,13 +3,29 @@
 <div id="map"></div>
 
 <script>
-    // Initialize and add the map
+    let map = null;
+    let ready = false;
+
+    function updateMapDevices() {
+        if (!ready)
+            return;
+
+        console.log("Updating devices on map ...");
+        let position = {lat: {% google_maps_latitude %}, lng: {% google_maps_longitude %}}
+        let marker = new google.maps.Marker({position: position, map: map});
+    }
+
     function initMap() {
-        // The location of Uluru
-        let center = {lat: {% google_maps_latitude %}, lng: {% google_maps_longitude %}};
-        let zoom = {% google_maps_zoom %};
-        let map = new google.maps.Map(document.getElementById('map'), {zoom: zoom, center: center});
-        let marker = new google.maps.Marker({position: center, map: map});
+        console.log("Initializing map ...");
+        let options = {
+            center: {lat: {% google_maps_latitude %}, lng: {% google_maps_longitude %}},
+            zoom: {% google_maps_zoom %},
+            mapTypeId: "{% google_maps_type %}",
+        };
+        map = new google.maps.Map(document.getElementById('map'), options);
+
+        ready = true;
+        updateMapDevices();
     }
 </script>
 

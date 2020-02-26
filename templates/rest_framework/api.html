@@ -1,1 +1,15 @@
-{% extends "rest_framework/new_base.html" %}
+{% extends "rest_framework/base.html" %}
+{% load extra_tags %}
+{% load api_extra_tags %}
+
+{% block title %}
+{% site_name %}{% if name %} | {{ name }}{% endif %}
+{% endblock %}
+
+{% block branding %}
+<a class='navbar-brand' href='/'>{% site_name %}</a>
+{% endblock %}
+
+{% block userlinks %}
+{% userlinks_list request user %}
+{% endblock %}

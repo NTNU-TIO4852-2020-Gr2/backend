@@ -1,0 +1,63 @@
+{% load extra_tags %}
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!--<link rel="icon" href="/favicon.png">-->
+
+		<title>
+			{% block title %}
+			{% site_name %}
+			{% if page_name %}
+			| {{ page_name }}
+			{% endif %}
+			{% endblock %}
+		</title>
+
+		<link href="/static/style/home.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{% site_name %}</a>
+			<ul class="navbar-nav px-3">
+				<li class="nav-item text-nowrap">
+					<a class="nav-link" href="{% url "api" %}">API</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="container-fluid">
+			<div class="row">
+				<nav class="col-md-3 d-none d-md-block bg-light sidebar">
+					<div class="sidebar-sticky">
+						<div class="overview-container">
+							{% include "home/overview.html" %}
+						</div>
+						<div class="device-list-container">
+							{% include "home/device_list.html" %}
+						</div>
+					</div>
+				</nav>
+				<main role="main" class="main-container col-md-9 ml-sm-auto">
+					<div class="map-container d-flex">
+						{% include "home/map.html" %}
+					</div>
+					<div class="details-container d-flex hidden">
+						{% include "home/details.html" %}
+					</div>
+				</main>
+			</div>
+		</div>
+
+		{# Scripts #}
+		{% bootstrap_css %}
+		{% bootstrap_javascript jquery='full' %}
+		{% bootstrap_messages %}
+	</body>
+</html>

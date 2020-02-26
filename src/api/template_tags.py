@@ -1,5 +1,4 @@
 from django import template
-from django.conf import settings
 from django.urls import NoReverseMatch, reverse
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
@@ -77,11 +76,3 @@ def userlinks_extras(request, user):
         items.append(format_html(general_item, name="Admin", href=reverse("admin:index")))
 
     return items
-
-
-@register.simple_tag
-def site_name():
-    """
-    Include site name.
-    """
-    return settings.SITE_NAME

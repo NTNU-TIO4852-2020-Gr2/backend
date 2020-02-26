@@ -2,3 +2,4 @@ django
 djangorestframework
 uritemplate
 pyyaml
+django-bootstrap4

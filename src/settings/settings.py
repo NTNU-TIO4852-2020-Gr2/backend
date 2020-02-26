@@ -15,6 +15,12 @@ DEBUG = False
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    # Local
+    'analysis.apps.Config',
+    'api.apps.Config',
+    'devices.apps.Config',
+    'home.apps.Config',
+
     # Django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -22,13 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
 
-    # Local
-    'analysis.apps.Config',
-    'api.apps.Config',
-    'devices.apps.Config',
-    'home.apps.Config',
+    # Third party
+    'rest_framework',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +53,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             "libraries": {
-                "rest_framework_extras": "misc.template_tags",
+                "extra_tags": "common.template_tags",
+                "api_extra_tags": "api.template_tags",
             },
             'context_processors': [
                 'django.template.context_processors.debug',

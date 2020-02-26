@@ -11,10 +11,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         read_only_fields = ["uuid", "time_created"]
 
     url = serializers.HyperlinkedIdentityField(view_name="device-detail")
-    measurements_count = serializers.SerializerMethodField()
-
-    def get_measurements_count(self, obj):
-        return Measurement.objects.filter(device=obj).count()
+    measurements_count = serializers.IntegerField()
 
 
 class DeviceCreateSerializer(DeviceSerializer):

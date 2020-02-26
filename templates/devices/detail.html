@@ -1,0 +1,21 @@
+{% extends "rest_framework/new_base.html" %}
+
+{% block content %}
+<h1>Device {{ device.name }}</h1>
+<p>UUID: <code>{{ device.uuid }}</code></p>
+<p>Measurements: {{ device.measurements_count }}</p>
+
+<table style="width: 100%;">
+    <tr>
+        <th>Time</th>
+        <th>pH</th>
+    </tr>
+    {% for measurement in measurements %}
+    <tr>
+        <td>{{ measurement.time }}</td>
+        <td>{{ measurement.ph }}</td>
+    </tr>
+    {% endfor %}
+<table>
+
+{% endblock %}

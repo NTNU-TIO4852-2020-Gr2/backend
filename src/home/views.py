@@ -6,4 +6,4 @@ def home(request):
     context["breadcrumblist"] = [
         ("Home", "/"),
     ]
-    return render(request, "home.html", context)
+    return render(request, "home/home.html", context)

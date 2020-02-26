@@ -17,6 +17,14 @@ class Device(models.Model):
     def __str__(self):
         return "{uuid} ({name})".format(uuid=self.uuid, name=self.name)
 
+    @property
+    def measurements(self):
+        return Measurement.objects.filter(device=self)
+
+    @property
+    def measurements_count(self):
+        return self.measurements.count()
+
 
 class Measurement(models.Model):
 

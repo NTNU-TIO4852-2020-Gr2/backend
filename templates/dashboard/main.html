@@ -20,9 +20,6 @@
 			{% endblock %}
 		</title>
 
-		{% bootstrap_css %}
-		{% bootstrap_javascript jquery='full' %}
-		{% bootstrap_messages %}
 		<link href="/static/style/dashboard.css" rel="stylesheet">
 		<script>
 			let mapOptions = {
@@ -32,6 +29,9 @@
 			};
 		</script>
 		<script src="/static/scripts/dashboard.js"></script>
+		{% bootstrap_css %}
+		{% bootstrap_javascript jquery='full' %}
+		{% bootstrap_messages %}
 	</head>
 
 	<body>

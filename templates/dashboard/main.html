@@ -24,7 +24,7 @@
 
 	<body>
 		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{% site_name %}</a>
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url "home" %}">{% site_name %}</a>
 			<ul class="navbar-nav px-3">
 				<li class="nav-item text-nowrap">
 					<a class="nav-link" href="{% url "api" %}">API</a>
@@ -37,19 +37,19 @@
 				<nav class="col-md-3 d-none d-md-block bg-light sidebar">
 					<div class="sidebar-sticky">
 						<div class="overview-container">
-							{% include "home/overview.html" %}
+							{% include "dashboard/overview.html" %}
 						</div>
 						<div class="device-list-container">
-							{% include "home/device_list.html" %}
+							{% include "dashboard/device_list.html" %}
 						</div>
 					</div>
 				</nav>
 				<main role="main" class="main-container col-md-9 ml-sm-auto">
 					<div class="map-container d-flex">
-						{% include "home/map.html" %}
+						{% include "dashboard/map.html" %}
 					</div>
 					<div class="details-container d-flex hidden">
-						{% include "home/details.html" %}
+						{% include "dashboard/details.html" %}
 					</div>
 				</main>
 			</div>

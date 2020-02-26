@@ -16,10 +16,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Local
-    'analysis.apps.Config',
     'api.apps.Config',
+    'dashboard.apps.Config',
     'devices.apps.Config',
-    'home.apps.Config',
 
     # Django
     'django.contrib.admin',

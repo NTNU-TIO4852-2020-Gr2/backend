@@ -1,4 +1,4 @@
-# backend
+# # PH2O Back-End
 
 [![Build Status](https://travis-ci.com/NTNU-TIO4852-2020-Gr2/backend.svg?branch=master)](https://travis-ci.com/NTNU-TIO4852-2020-Gr2/backend)
 [![Snyk](https://snyk.io/test/github/NTNU-TIO4852-2020-Gr2/backend/badge.svg)](https://snyk.io/test/github/NTNU-TIO4852-2020-Gr2/backend)

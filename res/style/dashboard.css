@@ -95,6 +95,11 @@ body {
 	box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
+.navbar .nav-item,
+.navbar .nav-link {
+	display: inline-block !important;
+}
+
 /*
  * Main (map and details)
  */
@@ -122,19 +127,6 @@ body {
 .details-container.hidden {
 	visibility: hidden;
 }
-
-/*
- * Google Maps tweaks
- */
-/*
-.gm-style-iw + div {
-	display: none;
-}
-
-.gm-style-iw {
-	text-align: center;
-}
-*/
 
 /*
  * Utilities

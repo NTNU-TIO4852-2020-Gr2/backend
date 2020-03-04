@@ -10,19 +10,19 @@
 
 language: python
 python:
-  - "3.8"
+- "3.8"
 
 services:
-  - docker
+- docker
 
 cache: pip
 
 stages:
-  - name: test
-  - name: deploy-registry
-    if: type = push
-  - name: deploy-site
-    if: type = push
+- name: test
+- name: deploy-registry
+  if: type = push
+- name: deploy-site
+  if: type = push
 
 jobs:
   include:

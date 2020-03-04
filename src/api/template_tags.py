@@ -66,9 +66,6 @@ def userlinks_extras(request, user):
     items = []
     general_item = '<li><a href="{href}">{name}</a></li>'
 
-    # Link to API
-    items.append(format_html(general_item, name="API", href=reverse("api")))
-
     # Link to site scheme
     items.append(format_html(general_item, name="Schema", href=reverse("schema")))
 

@@ -22,7 +22,7 @@ class Device(models.Model):
         return Measurement.objects.filter(device=self)
 
     @property
-    def measurements_count(self):
+    def measurement_count(self):
         return self.measurements.count()
 
 

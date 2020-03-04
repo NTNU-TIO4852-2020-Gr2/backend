@@ -11,7 +11,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         read_only_fields = ["uuid", "time_created"]
 
     url = serializers.HyperlinkedIdentityField(view_name="device-detail")
-    measurements_count = serializers.IntegerField()
+    measurements_count = serializers.ReadOnlyField()
 
 
 class DeviceCreateSerializer(DeviceSerializer):

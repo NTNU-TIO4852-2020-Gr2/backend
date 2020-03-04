@@ -4,7 +4,7 @@
 
 LOCAL_DIR=".local/venv"
 MANAGE="manage/manage.sh"
-DEFAULT_ENDPOINT="localhost:8000"
+DEFAULT_ENDPOINT="localhost:9001"
 
 set -eu
 

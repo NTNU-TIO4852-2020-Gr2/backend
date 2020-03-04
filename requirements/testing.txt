@@ -6,10 +6,9 @@
 #
 asgiref==3.2.3            # via django
 bandit==1.6.2             # via flake8-bandit
-beautifulsoup4==4.8.2     # via django-bootstrap4
 cohesion==1.0.0           # via -r requirements/testing.in (line 8)
-django-bootstrap4==1.1.1  # via -r requirements/base.in (line 5)
-django==3.0.3             # via -r requirements/base.in (line 1), djangorestframework
+django-cors-headers==3.2.1  # via -r requirements/base.in (line 5)
+django==3.0.4             # via -r requirements/base.in (line 1), django-cors-headers, djangorestframework
 djangorestframework==3.11.0  # via -r requirements/base.in (line 2)
 entrypoints==0.3          # via flake8
 flake8-bandit==2.1.2      # via -r requirements/testing.in (line 5)
@@ -41,11 +40,10 @@ pytz==2019.3              # via django
 pyyaml==5.3               # via -r requirements/base.in (line 4), bandit
 six==1.14.0               # via bandit, flake8-print, stevedore
 smmap==3.0.1              # via gitdb
-soupsieve==2.0            # via beautifulsoup4
-sqlparse==0.3.0           # via django
+sqlparse==0.3.1           # via django
 stevedore==1.32.0         # via bandit
 uritemplate==3.0.1        # via -r requirements/base.in (line 3)
-zipp==3.0.0               # via importlib-metadata
+zipp==3.1.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

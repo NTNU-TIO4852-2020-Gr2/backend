@@ -2,4 +2,4 @@ django
 djangorestframework
 uritemplate
 pyyaml
-django-bootstrap4
+django-cors-headers

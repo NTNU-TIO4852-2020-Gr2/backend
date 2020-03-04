@@ -8,16 +8,15 @@ BASE_DIR = os.path.normpath(os.path.join(SETTINGS_DIR, '..', '..'))
 # Settings package
 SETTINGS_PACKAGE = 'settings'
 
-APP_NAME = "EiT Backend"
-SITE_NAME = "EiT Backend"
-SECRET_KEY = ''
+APP_NAME = "PH2O"
+SITE_NAME = "PH2O"
+SECRET_KEY = ""
 DEBUG = False
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Local
     'api.apps.Config',
-    'dashboard.apps.Config',
     'devices.apps.Config',
 
     # Django
@@ -54,7 +53,6 @@ TEMPLATES = [
             "libraries": {
                 "common_tags": "common.template_tags",
                 "api_tags": "api.template_tags",
-                "dashboard_tags": "dashboard.template_tags",
             },
             'context_processors': [
                 'django.template.context_processors.debug',

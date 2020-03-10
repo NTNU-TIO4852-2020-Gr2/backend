@@ -16,11 +16,3 @@ DATABASES = {
 
 # Change log path
 LOGGING['handlers']['error_file']['filename'] = LOCAL_FILE_ROOT + "/error.log"
-
-# Map
-GOOGLE_MAPS_API_KEY = ""
-GOOGLE_MAPS_LATITUDE = "63.419499"
-GOOGLE_MAPS_LONGITUDE = "10.402077"
-GOOGLE_MAPS_ZOOM = "10"
-# roadmap, satellite, hybrid or terrain
-GOOGLE_MAPS_TYPE = "terrain"

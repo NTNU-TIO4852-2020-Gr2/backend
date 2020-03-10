@@ -10,6 +10,7 @@ SETTINGS_PACKAGE = 'settings'
 
 APP_NAME = "PH2O"
 SITE_NAME = "PH2O"
+LOGO_LINK = "/"
 SECRET_KEY = ""
 DEBUG = False
 ALLOWED_HOSTS = []

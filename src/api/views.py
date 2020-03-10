@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.parsers import JSONParser, ParseError
+from rest_framework.response import Response
 from rest_framework.utils import json
 
 from common.request_utils import get_query_param_int, get_query_param_str
@@ -33,43 +34,12 @@ class MeasurementViewSet(viewsets.ModelViewSet):
         return MeasurementSerializer
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = Measurement.objects.all()
         if self.action != "list":
             return queryset
 
         # Filter by query params
-        device = get_query_param_str(self.request, "device")
-        if device is not None:
-            try:
-                queryset = queryset.filter(device=device)
-            except ValidationError as err:  # noqa: F841
-                pass  # Ignore
-
-        time_start = get_query_param_str(self.request, "time_start")
-        if time_start is not None:
-            try:
-                queryset = queryset.filter(time__gte=time_start)
-            except ValidationError as err:  # noqa: F841
-                pass  # Ignore
-
-        time_end = get_query_param_str(self.request, "time_end")
-        if time_end is not None:
-            try:
-                queryset = queryset.filter(time__lt=time_end)
-            except ValidationError as err:  # noqa: F841
-                pass  # Ignore
-
-        id_start = get_query_param_int(self.request, "id_start")
-        if id_start is not None:
-            queryset = queryset.filter(id__gte=id_start)
-
-        id_end = get_query_param_int(self.request, "id_end")
-        if id_end is not None:
-            queryset = queryset.filter(id__lt=id_end)
-
-        max_count = get_query_param_int(self.request, "max_count")
-        if max_count is not None:
-            queryset = queryset[:max_count]
+        queryset = self.get_queryset_direct(self.request, queryset)
 
         # Limit max returned count
         hard_max_count = settings.API_MEASUREMENTS_MAX_COUNT
@@ -77,7 +47,45 @@ class MeasurementViewSet(viewsets.ModelViewSet):
 
         return queryset
 
-    @action(name="NB-IoT Engineering Webhook Endpoint", detail=False, methods=["post"])
+    def get_queryset_direct(self, request, queryset):
+
+        # Filter by query params
+        device = get_query_param_str(request, "device")
+        if device is not None:
+            try:
+                queryset = queryset.filter(device=device)
+            except ValidationError as err:  # noqa: F841
+                pass  # Ignore
+
+        time_start = get_query_param_str(request, "time_start")
+        if time_start is not None:
+            try:
+                queryset = queryset.filter(time__gte=time_start)
+            except ValidationError as err:  # noqa: F841
+                pass  # Ignore
+
+        time_end = get_query_param_str(request, "time_end")
+        if time_end is not None:
+            try:
+                queryset = queryset.filter(time__lt=time_end)
+            except ValidationError as err:  # noqa: F841
+                pass  # Ignore
+
+        id_start = get_query_param_int(request, "id_start")
+        if id_start is not None:
+            queryset = queryset.filter(id__gte=id_start)
+
+        id_end = get_query_param_int(request, "id_end")
+        if id_end is not None:
+            queryset = queryset.filter(id__lt=id_end)
+
+        max_count = get_query_param_int(request, "max_count")
+        if max_count is not None:
+            queryset = queryset[:max_count]
+
+        return queryset
+
+    @action(url_path="nbiot_engineering", name="NB-IoT Engineering Webhook Endpoint", detail=False, methods=["post"])
     def nbiot_engineering(self, request):
         data = JSONParser().parse(request)
         if "messages" not in data or len(data["messages"]) == 0 or "payload" not in data["messages"][0]:
@@ -93,3 +101,11 @@ class MeasurementViewSet(viewsets.ModelViewSet):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+    @action(url_path="count", name="Measurements Count", detail=False, methods=["get"])
+    def measurements_count(self, request):
+        queryset = self.get_queryset_direct(self.request, self.queryset)
+        data = {
+            "count": queryset.count(),
+        }
+        return Response(data)

@@ -41,3 +41,6 @@ GOOGLE_MAPS_LONGITUDE = "10.402077"
 GOOGLE_MAPS_ZOOM = "10"
 # roadmap, satellite, hybrid or terrain
 GOOGLE_MAPS_TYPE = "terrain"
+
+# API
+API_MEASUREMENTS_MAX_COUNT = 1000

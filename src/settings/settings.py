@@ -162,6 +162,9 @@ GOOGLE_MAPS_ZOOM = "10"
 # roadmap, satellite, hybrid or terrain
 GOOGLE_MAPS_TYPE = "terrain"
 
+# API
+API_MEASUREMENTS_MAX_COUNT = 1000
+
 # Read version from file
 VERSION = '0'
 version_file_path = os.path.join(BASE_DIR, 'VERSION')

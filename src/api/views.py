@@ -4,11 +4,12 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 
-from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.parsers import JSONParser, ParseError
 from rest_framework.response import Response
 from rest_framework.utils import json
+from rest_framework.viewsets import ModelViewSet
 
 from common.request_utils import get_query_param_int, get_query_param_str
 from devices.models import Device, Measurement
@@ -16,8 +17,12 @@ from devices.models import Device, Measurement
 from .serializers import DeviceCreateSerializer, DeviceSerializer, MeasurementCreateSerializer, MeasurementSerializer
 
 
-class DeviceViewSet(viewsets.ModelViewSet):
+class DeviceViewSet(ModelViewSet):
     queryset = Device.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ["name"]
+    ordering_fields = ["uuid", "name", "time_created"]
+    ordering = ["name"]
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -25,8 +30,11 @@ class DeviceViewSet(viewsets.ModelViewSet):
         return DeviceSerializer
 
 
-class MeasurementViewSet(viewsets.ModelViewSet):
+class MeasurementViewSet(ModelViewSet):
     queryset = Measurement.objects.all()
+    filter_backends = [OrderingFilter]
+    ordering_fields = ["device", "time", "ph", "temperature"]
+    ordering = ["time"]
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -82,6 +90,20 @@ class MeasurementViewSet(viewsets.ModelViewSet):
         max_count = get_query_param_int(request, "max_count")
         if max_count is not None:
             queryset = queryset[:max_count]
+
+        order_by = get_query_param_str(request, "order_by")
+        if order_by == "uuid":
+            queryset = queryset.order_by("uuid")
+        if order_by == "-uuid":
+            queryset = queryset.order_by("-uuid")
+        if order_by == "name":
+            queryset = queryset.order_by("name")
+        if order_by == "-name":
+            queryset = queryset.order_by("-name")
+        if order_by == "time_created":
+            queryset = queryset.order_by("time_created")
+        if order_by == "-time_created":
+            queryset = queryset.order_by("-time_created")
 
         return queryset
 

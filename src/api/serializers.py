@@ -26,7 +26,7 @@ class MeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Measurement
         fields = "__all__"
-        read_only_fields = ["device", "time", "ph"]
+        read_only_fields = ["device", "time", "ph", "temperature"]
 
     url = serializers.HyperlinkedIdentityField(view_name="measurement-detail")
 

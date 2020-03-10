@@ -34,6 +34,7 @@ class Measurement(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
     ph = models.FloatField(blank=True, null=True)
+    temperature = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return "{device} - {time}".format(device=self.device, time=self.time)

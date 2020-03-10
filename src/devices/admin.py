@@ -17,10 +17,10 @@ class DeviceAdmin(ModelAdmin):
 
 @register(Measurement)
 class MeasurementAdmin(ModelAdmin):
-    list_display = ["id", "device", "time", "ph"]
+    list_display = ["id", "device", "time", "ph", "temperature"]
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return ["device", "time", "ph"]
+            return ["device", "time", "ph", "temperature"]
         else:
             return []

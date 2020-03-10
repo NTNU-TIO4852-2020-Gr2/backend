@@ -32,9 +32,6 @@ class DeviceViewSet(ModelViewSet):
 
 class MeasurementViewSet(ModelViewSet):
     queryset = Measurement.objects.all()
-    filter_backends = [OrderingFilter]
-    ordering_fields = ["device", "time", "ph", "temperature"]
-    ordering = ["time"]
 
     def get_serializer_class(self):
         if self.action == "create":

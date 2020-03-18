@@ -5,6 +5,10 @@ from django.db import models
 from django.utils.crypto import get_random_string
 
 
+def get_random_string_64():
+    return get_random_string(length=64)
+
+
 class Device(models.Model):
 
     class Meta:
@@ -13,7 +17,7 @@ class Device(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField(max_length=255, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
-    key = models.CharField(max_length=64, default=get_random_string(length=64), validators=[MinLengthValidator(64)])
+    key = models.CharField(default=get_random_string_64, max_length=64, validators=[MinLengthValidator(64)])
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
 

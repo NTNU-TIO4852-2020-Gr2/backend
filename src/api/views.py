@@ -137,13 +137,9 @@ class MeasurementViewSet(ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        device_key = request.headers.get(self._device_key_header)
-        if not device_key:
-            response_data = {"detail": "No device authentication key header specified."}
-            return Response(response_data, status=401)
-        if device_key != serializer.validated_data["device"].key:
-            response_data = {"detail": "Wrong device authentication key header specified."}
-            return Response(response_data, status=403)
+        response = self.allowed_create(request, serializer.validated_data)
+        if response:
+            return response
 
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -164,13 +160,9 @@ class MeasurementViewSet(ModelViewSet):
         serializer = MeasurementCreateSerializer(data=payload_data, context={"request": request})
         serializer.is_valid(raise_exception=True)
 
-        device_key = request.headers.get(self._device_key_header)
-        if not device_key:
-            response_data = {"detail": "No device authentication key header specified."}
-            return Response(response_data, status=401)
-        if device_key != serializer.validated_data["device"].key:
-            response_data = {"detail": "Wrong device authentication key header specified."}
-            return Response(response_data, status=403)
+        response = self.allowed_create(request, serializer.validated_data)
+        if response:
+            return response
 
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -183,3 +175,16 @@ class MeasurementViewSet(ModelViewSet):
             "count": queryset.count(),
         }
         return Response(data)
+
+    def allowed_create(self, request, serializer_data):
+        device_key = request.headers.get(self._device_key_header)
+        if request.user.is_superuser:
+            return None
+        elif device_key:
+            if device_key != serializer_data["device"].key:
+                response_data = {"detail": "Wrong device authentication key header specified."}
+                return Response(response_data, status=403)
+            return None
+        else:
+            response_data = {"detail": "Missing authentication."}
+            return Response(response_data, status=401)

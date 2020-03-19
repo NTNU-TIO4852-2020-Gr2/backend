@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.utils import json
 from rest_framework.viewsets import ModelViewSet
 
+from common.permissions import AllowAll, DenyAll, DisjunctionPermission, IsSuperuser
 from common.request_utils import get_query_param_int, get_query_param_str
 from devices.models import Device, Measurement
 
@@ -24,6 +25,17 @@ class DeviceViewSet(ModelViewSet):
     ordering_fields = ["uuid", "name", "time_created"]
     ordering = ["name"]
 
+    def get_permissions(self):
+        permissions = {
+            "list": [AllowAll()],
+            "retrieve": [AllowAll()],
+            "create": [IsSuperuser()],
+            "update": [IsSuperuser()],
+            "partial_update": [IsSuperuser()],
+            "destroy": [IsSuperuser()],
+        }
+        return permissions.get(self.action, [DenyAll()])
+
     def get_serializer_class(self):
         if self.action == "create":
             return DeviceCreateSerializer
@@ -32,6 +44,22 @@ class DeviceViewSet(ModelViewSet):
 
 class MeasurementViewSet(ModelViewSet):
     queryset = Measurement.objects.all()
+
+    _device_key_header = "Device-Key"
+
+    def get_permissions(self):
+        permissions = {
+            "list": [AllowAll()],
+            "retrieve": [AllowAll()],
+            # Checked for device-key-match later
+            "create": [AllowAll()],
+            "update": [DenyAll()],
+            "partial_update": [DenyAll()],
+            "destroy": [IsSuperuser()],
+            # Checked for device-key-match later
+            "nbiot_engineering_create": [AllowAll()],
+        }
+        return permissions.get(self.action, [DenyAll()])
 
     def get_serializer_class(self):
         if self.action == "create":
@@ -53,7 +81,6 @@ class MeasurementViewSet(ModelViewSet):
         return queryset
 
     def get_queryset_direct(self, request, queryset):
-
         # Filter by query params
         device = get_query_param_str(request, "device")
         if device is not None:
@@ -104,8 +131,26 @@ class MeasurementViewSet(ModelViewSet):
 
         return queryset
 
+    def create(self, request, *args, **kwargs):
+        # Based on CreateModelMixin
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        device_key = request.headers.get(self._device_key_header)
+        if not device_key:
+            response_data = {"detail": "No device authentication key header specified."}
+            return Response(response_data, status=401)
+        if device_key != serializer.validated_data["device"].key:
+            response_data = {"detail": "Wrong device authentication key header specified."}
+            return Response(response_data, status=403)
+
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=201, headers=headers)
+
     @action(url_path="nbiot_engineering", name="NB-IoT Engineering Webhook Endpoint", detail=False, methods=["post"])
-    def nbiot_engineering(self, request):
+    def nbiot_engineering_create(self, request):
         data = JSONParser().parse(request)
         if "messages" not in data or len(data["messages"]) == 0 or "payload" not in data["messages"][0]:
             return JsonResponse(status=400, data={"error": "Missing payload."})
@@ -115,11 +160,21 @@ class MeasurementViewSet(ModelViewSet):
             payload_data = json.loads(payload_string)
         except ValueError as ex:
             raise ParseError("JSON parse error - {ex}".format(ex=ex))
+
         serializer = MeasurementCreateSerializer(data=payload_data, context={"request": request})
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+        serializer.is_valid(raise_exception=True)
+
+        device_key = request.headers.get(self._device_key_header)
+        if not device_key:
+            response_data = {"detail": "No device authentication key header specified."}
+            return Response(response_data, status=401)
+        if device_key != serializer.validated_data["device"].key:
+            response_data = {"detail": "Wrong device authentication key header specified."}
+            return Response(response_data, status=403)
+
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=201, headers=headers)
 
     @action(url_path="count", name="Measurements Count", detail=False, methods=["get"])
     def measurements_count(self, request):

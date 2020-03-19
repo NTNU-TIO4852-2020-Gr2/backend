@@ -2,43 +2,64 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 
 class DenyAll(BasePermission):
-    """Deny everything."""
+    """
+    Deny everything.
+    """
+
     def has_permission(self, request, view):
         return False
 
 
 class AllowAll(BasePermission):
-    """Allow everything. Same as empty permission set."""
+    """
+    Allow everything. Same as empty permission set.
+    """
+
     def has_permission(self, request, view):
         return True
 
 
 class IsSuperuser(BasePermission):
-    """Allow if user is superuser."""
+    """
+    Allow if user is superuser.
+    """
+
     def has_permission(self, request, view):
         return request.user.is_superuser
 
 
 class IsStaff(BasePermission):
-    """Allow if user is staff."""
+    """
+    Allow if user is staff.
+    """
+
     def has_permission(self, request, view):
         return request.user.is_staff
 
 
 class IsOwner(BasePermission):
-    """Allow if user is owner of resource."""
+    """
+    Allow if user is owner of resource.
+    """
+
     def has_object_permission(self, request, view, obj):
         return obj.owner == request.user
 
 
 class IsSelf(BasePermission):
-    """Allow if the user is the resource."""
+    """
+    Allow if the user is the resource.
+    """
+
     def has_object_permission(self, request, view, obj):
         return obj.owner == request.user
 
 
 class IsReadOnly(BasePermission):
-    """Allow if request is using a safe (read-only) HTTP method."""
+    """
+    Allow if request is using a safe (read-only) HTTP method.
+    """
+
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
 
@@ -85,6 +106,9 @@ class ConjunctionPermission(BasePermission):
         self.permissions = permissions
 
     def has_permission(self, request, view):
+        for permission in self.permissions:
+            if not permission.has_permission(request, view):
+                return False
         return True
 
     def has_object_permission(self, request, view, obj):
@@ -104,7 +128,10 @@ class DisjunctionPermission(BasePermission):
         self.permissions = permissions
 
     def has_permission(self, request, view):
-        return True
+        for permission in self.permissions:
+            if permission.has_permission(request, view):
+                return True
+        return False
 
     def has_object_permission(self, request, view, obj):
         for permission in self.permissions:

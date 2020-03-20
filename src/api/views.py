@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.utils import json
 from rest_framework.viewsets import ModelViewSet
 
-from common.permissions import AllowAll, DenyAll, DisjunctionPermission, IsSuperuser
+from common.permissions import AllowAll, DenyAll, IsSuperuser
 from common.request_utils import get_query_param_int, get_query_param_str
 from devices.models import Device, Measurement
 
@@ -51,12 +51,12 @@ class MeasurementViewSet(ModelViewSet):
         permissions = {
             "list": [AllowAll()],
             "retrieve": [AllowAll()],
-            # Checked for device-key-match later
+            # Checked for device-key-match or superuser later
             "create": [AllowAll()],
             "update": [DenyAll()],
             "partial_update": [DenyAll()],
             "destroy": [IsSuperuser()],
-            # Checked for device-key-match later
+            # Same access control as for "create"
             "nbiot_engineering_create": [AllowAll()],
         }
         return permissions.get(self.action, [DenyAll()])
@@ -177,14 +177,22 @@ class MeasurementViewSet(ModelViewSet):
         return Response(data)
 
     def allowed_create(self, request, serializer_data):
-        device_key = request.headers.get(self._device_key_header)
+        # Allow superuser
         if request.user.is_superuser:
             return None
-        elif device_key:
+
+        # Allow if device auth is disabled
+        if settings.DISABLE_DEVICE_AUTH:
+            return None
+
+        # Allow if valid device key
+        device_key = request.headers.get(self._device_key_header)
+        if device_key:
             if device_key != serializer_data["device"].key:
                 response_data = {"detail": "Wrong device authentication key header specified."}
                 return Response(response_data, status=403)
             return None
-        else:
-            response_data = {"detail": "Missing authentication."}
-            return Response(response_data, status=401)
+
+        # Deny
+        response_data = {"detail": "Missing authentication."}
+        return Response(response_data, status=401)

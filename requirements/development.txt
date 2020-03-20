@@ -7,7 +7,6 @@
 asgiref==3.2.5            # via django
 bandit==1.6.2             # via flake8-bandit
 click==7.1.1              # via pip-tools
-cohesion==1.0.0           # via -r requirements/testing.in
 django-cors-headers==3.2.1  # via -r requirements/base.in
 django==3.0.4             # via -r requirements/base.in, django-cors-headers, djangorestframework
 djangorestframework==3.11.0  # via -r requirements/base.in

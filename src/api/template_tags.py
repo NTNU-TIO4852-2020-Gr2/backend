@@ -48,7 +48,7 @@ def userlinks_list(request, user):
 
 def userlinks_login(request):
     try:
-        item = '<li><a href="{href}?next={next}">Log in</a></li>'
+        item = "<li><a href=\"{href}?next={next}\">Log in</a></li>"
         return format_html(item, href=reverse("rest_framework:login"), next=escape(request.path))
     except NoReverseMatch:
         pass
@@ -56,7 +56,7 @@ def userlinks_login(request):
 
 def userlinks_logout(request):
     try:
-        item = '<li><a href="{href}?next={next}">Log out</a></li>'
+        item = "<li><a href=\"{href}?next={next}\">Log out</a></li>"
         return format_html(item, href=reverse("rest_framework:logout"), next=escape(request.path))
     except NoReverseMatch:
         pass
@@ -64,7 +64,7 @@ def userlinks_logout(request):
 
 def userlinks_extras(request, user):
     items = []
-    general_item = '<li><a href="{href}">{name}</a></li>'
+    general_item = "<li><a href=\"{href}\">{name}</a></li>"
 
     # Link to site scheme
     items.append(format_html(general_item, name="Schema", href=reverse("schema")))

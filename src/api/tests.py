@@ -13,10 +13,10 @@
 
 #     def test_register_measurement(self):
 #         measurement = json.dumps({
-#             'device': str(self.uuid),
-#             'ph': 1.0,
-#             'temperature': 2.0,
-#             'turbidity': 3.0,
-#             'particle_density': 4.0})
-#         response = self.client.post('/register', measurement, content_type='application/json')
+#             "device": str(self.uuid),
+#             "ph": 1.0,
+#             "temperature": 2.0,
+#             "turbidity": 3.0,
+#             "particle_density": 4.0})
+#         response = self.client.post("/register", measurement, content_type="application/json")
 #         self.assertEqual(response.status_code, 200)

@@ -6,10 +6,9 @@ set -eu
 
 echo "Running some checks. This will stop on the first error, or print \"success\" if no errors were caught."
 
-# LINTING DISABLED
-#echo
-#echo "Running linter ..."
-#manage/lint.sh
+echo
+echo "Running linter ..."
+manage/lint.sh
 
 echo
 echo "Checking migrations ..."

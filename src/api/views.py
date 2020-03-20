@@ -13,6 +13,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from common.permissions import AllowAll, DenyAll, IsSuperuser
 from common.request_utils import get_query_param_int, get_query_param_str
+
 from devices.models import Device, Measurement
 
 from .serializers import DeviceCreateSerializer, DeviceSerializer, MeasurementCreateSerializer, MeasurementSerializer

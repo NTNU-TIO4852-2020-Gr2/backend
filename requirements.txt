@@ -7,54 +7,54 @@
 #
 #    manage/update-deps.sh
 #
-asgiref==3.2.3            # via django
+asgiref==3.2.5            # via django
 bandit==1.6.2             # via flake8-bandit
 certifi==2019.11.28       # via requests
 chardet==3.0.4            # via requests
-click==7.0                # via pip-tools
-cohesion==1.0.0           # via -r requirements/testing.in (line 8)
-django-cors-headers==3.2.1  # via -r requirements/base.in (line 5)
-django-mailgun==0.9.1     # via -r requirements/production.in (line 4)
-django==3.0.4             # via -r requirements/base.in (line 1), django-cors-headers, djangorestframework
-djangorestframework==3.11.0  # via -r requirements/base.in (line 2)
+click==7.1.1              # via pip-tools
+cohesion==1.0.0           # via -r requirements/testing.in
+django-cors-headers==3.2.1  # via -r requirements/base.in
+django-mailgun==0.9.1     # via -r requirements/production.in
+django==3.0.4             # via -r requirements/base.in, django-cors-headers, djangorestframework
+djangorestframework==3.11.0  # via -r requirements/base.in
 entrypoints==0.3          # via flake8
-flake8-bandit==2.1.2      # via -r requirements/testing.in (line 5)
-flake8-blind-except==0.1.1  # via -r requirements/testing.in (line 6)
-flake8-builtins==1.4.2    # via -r requirements/testing.in (line 7)
-flake8-commas==2.0.0      # via -r requirements/testing.in (line 9)
-flake8-comprehensions==3.2.2  # via -r requirements/testing.in (line 10)
-flake8-debugger==3.2.1    # via -r requirements/testing.in (line 11)
-flake8-import-order==0.18.1  # via -r requirements/testing.in (line 12)
-flake8-logging-format==0.6.0  # via -r requirements/testing.in (line 13)
-flake8-mutable==1.2.0     # via -r requirements/testing.in (line 14)
-flake8-pep3101==1.3.0     # via -r requirements/testing.in (line 15)
+flake8-bandit==2.1.2      # via -r requirements/testing.in
+flake8-blind-except==0.1.1  # via -r requirements/testing.in
+flake8-builtins==1.5.2    # via -r requirements/testing.in
+flake8-commas==2.0.0      # via -r requirements/testing.in
+flake8-comprehensions==3.2.2  # via -r requirements/testing.in
+flake8-debugger==3.2.1    # via -r requirements/testing.in
+flake8-import-order==0.18.1  # via -r requirements/testing.in
+flake8-logging-format==0.6.0  # via -r requirements/testing.in
+flake8-mutable==1.2.0     # via -r requirements/testing.in
+flake8-pep3101==1.3.0     # via -r requirements/testing.in
 flake8-polyfill==1.0.2    # via flake8-bandit, pep8-naming
-flake8-print==3.1.4       # via -r requirements/testing.in (line 17)
-flake8-quotes==2.1.1      # via -r requirements/testing.in (line 18)
-flake8-string-format==0.3.0  # via -r requirements/testing.in (line 19)
-flake8-tidy-imports==4.0.0  # via -r requirements/testing.in (line 20)
-flake8-todo==0.7          # via -r requirements/testing.in (line 21)
-flake8==3.7.9             # via -r requirements/testing.in (line 4), flake8-bandit, flake8-builtins, flake8-commas, flake8-comprehensions, flake8-debugger, flake8-mutable, flake8-pep3101, flake8-polyfill, flake8-print, flake8-quotes, flake8-string-format, flake8-tidy-imports
+flake8-print==3.1.4       # via -r requirements/testing.in
+flake8-quotes==2.1.1      # via -r requirements/testing.in
+flake8-string-format==0.3.0  # via -r requirements/testing.in
+flake8-tidy-imports==4.0.0  # via -r requirements/testing.in
+flake8-todo==0.7          # via -r requirements/testing.in
+flake8==3.7.9             # via -r requirements/testing.in, flake8-bandit, flake8-builtins, flake8-commas, flake8-comprehensions, flake8-debugger, flake8-mutable, flake8-pep3101, flake8-polyfill, flake8-print, flake8-quotes, flake8-string-format, flake8-tidy-imports
 gitdb==4.0.2              # via gitpython
 gitpython==3.1.0          # via bandit
 idna==2.9                 # via requests
 importlib-metadata==1.5.0  # via flake8-comprehensions, flake8-tidy-imports
 mccabe==0.6.1             # via flake8
 pbr==5.4.4                # via stevedore
-pep8-naming==0.9.1        # via -r requirements/testing.in (line 16)
-pip-tools==4.5.1          # via -r requirements/development.in (line 3)
+pep8-naming==0.9.1        # via -r requirements/testing.in
+pip-tools==4.5.1          # via -r requirements/development.in
 pycodestyle==2.5.0        # via flake8, flake8-bandit, flake8-debugger, flake8-import-order, flake8-print, flake8-todo
 pyflakes==2.1.1           # via flake8
 pytz==2019.3              # via django
-pyyaml==5.3               # via -r requirements/base.in (line 4), bandit
+pyyaml==5.3.1             # via -r requirements/base.in, bandit
 requests==2.23.0          # via django-mailgun
 six==1.14.0               # via bandit, django-mailgun, flake8-print, pip-tools, stevedore
 smmap==3.0.1              # via gitdb
 sqlparse==0.3.1           # via django
 stevedore==1.32.0         # via bandit
-uritemplate==3.0.1        # via -r requirements/base.in (line 3)
+uritemplate==3.0.1        # via -r requirements/base.in
 urllib3==1.25.8           # via requests
-uwsgi==2.0.18             # via -r requirements/production.in (line 3)
+uwsgi==2.0.18             # via -r requirements/production.in
 zipp==3.1.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:

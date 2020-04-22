@@ -17,3 +17,14 @@ services:
     - ../.local/docker/log:/app/log:rw
     ports:
     - "8000:8080"
+    depends_on:
+      - db
+
+  db:
+    container_name: eit-db
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ../.local/docker/db/data:/var/lib/postgresql/data:rw

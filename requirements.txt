@@ -46,7 +46,7 @@ psycopg2-binary==2.8.5    # via -r requirements/production.in
 pycodestyle==2.5.0        # via flake8, flake8-bandit, flake8-debugger, flake8-import-order, flake8-print, flake8-todo
 pyflakes==2.1.1           # via flake8
 pytz==2019.3              # via django
-pyyaml==5.3.1             # via -r requirements/base.in, bandit
+pyyaml==5.4             # via -r requirements/base.in, bandit
 requests==2.23.0          # via django-mailgun
 six==1.14.0               # via bandit, django-mailgun, flake8-print, pip-tools, stevedore
 smmap==3.0.2              # via gitdb
